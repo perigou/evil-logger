@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
   // 🔁 Send log to Pipedream
   try {
-    await fetch("https://endpoint.m.pipedream.net/abc123", {
+    await fetch("https://eoc7rtgq66dkqic.m.pipedream.net", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(log)
